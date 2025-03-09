@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 
-const basePath = "";
+const basePath = "/portfolio";
 
 function Router() {
   return (
