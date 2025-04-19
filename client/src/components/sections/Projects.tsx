@@ -5,6 +5,22 @@ import { Badge } from "@/components/ui/badge";
 
 const projects = [
   {
+    title: "KIITGPT Chatbot",
+    description: "A chatbot designed to answer questions about Kalinga Institute of Industrial Technology (KIIT). It utilizes the Llama 2 7B chat model, fine-tuned using LoRA (Low-Rank Adaptation) on a custom KIIT-specific dataset.",
+    image: "/project_Img/KIITGPT.gif",
+    github: "https://github.com/dutta-sujoy/KiitGPT",
+    huggingface: "https://huggingface.co/sujoy0011/kiit-llama2-lora-adapters",
+    techStack: ["Python", "Transformers", "LLaMA 2", "Gradio", "LoRA", "Fine-tuned LLM"]
+  },
+  {
+    title: "AgroBrain",
+    description: "Contributed to AgroBrain, an AI-powered solution for farmers, developing 2 core models: Crop Recommendation and Disease Detection.",
+    image: "/project_Img/AgroBrain.gif",
+    github: "https://github.com/Agro-Brain/AgroBrain/tree/main/All%20Services",
+    huggingface: "https://huggingface.co/spaces/sujoy0011/crop-prediction/tree/main",
+    techStack: ["Python", "Scikit-Learn", "CNN", "TensorFlow", "FastAPI", "Docker"]
+  },
+  {
     title: "Movie Recommendation System",
     description: "AI-powered movie recommendation system using Content-Based Filtering, Streamlit, and TMDB API to suggest and display similar movies with posters.",
     image: "https://img.youtube.com/vi/i-B_I2DGIAI/maxresdefault.jpg",
@@ -25,7 +41,7 @@ const projects = [
   {
     title: "Twitter Sentiment Analysis",
     description: "Real-time Twitter Sentiment Analysis using NLP and ML, feeding tweets through the API, and classifying them as positive or negative with Logistic Regression and TF-IDF.",
-    image: "https://private-user-images.githubusercontent.com/117010765/419195821-73c71c24-2240-4388-af2c-893f43317091.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDExMjMzOTQsIm5iZiI6MTc0MTEyMzA5NCwicGF0aCI6Ii8xMTcwMTA3NjUvNDE5MTk1ODIxLTczYzcxYzI0LTIyNDAtNDM4OC1hZjJjLTg5M2Y0MzMxNzA5MS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMwNFQyMTE4MTRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wZjM1MWI4M2I3Yzc5MmRlMTk4ZGFlZWMxMTM5NTBhMGNhZmY3MDg1YjBkYjVjMWU4YTQ2NTRjMGQzMGE1YTg0JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.CtNiqrnnIYYi_BS1pTngD1Qf_mNZpaSW0jkjgZR-lIQ",
+    image: "/project_Img/Twitter_Sentiment_Analysis.jpg",
     github: "https://github.com/dutta-sujoy/Twitter-Sentiment-Analysis",
     live: "https://sujoy0011-twitter-sentiment-analysis.hf.space",
     huggingface: "https://huggingface.co/spaces/sujoy0011/Twitter_Sentiment_Analysis/tree/main",
@@ -34,7 +50,7 @@ const projects = [
   {
     title: "House Price Prediction",
     description: "Machine learning model for predicting house prices using multiple regression techniques.",
-    image: "https://private-user-images.githubusercontent.com/117010765/344370761-6ba49eb0-91db-4cc2-8acd-a3d0a6803639.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDExMjM3ODMsIm5iZiI6MTc0MTEyMzQ4MywicGF0aCI6Ii8xMTcwMTA3NjUvMzQ0MzcwNzYxLTZiYTQ5ZWIwLTkxZGItNGNjMi04YWNkLWEzZDBhNjgwMzYzOS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMzA0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDMwNFQyMTI0NDNaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02MTk3MzE2YzVjZGU0YWJjOGRlNjhhZDkzOTYwN2MyMWM2YTIwYTZlNTViMTg4MDU3MTdkNmYwYTJkNTBjNTkzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.zLzrjY0rtbeTLz4mRjV0ASzB4JNHS9rgZrDnuoupvpw",
+    image: "/project_Img/House_Price_Prediction.jpg",
     github: "https://github.com/dutta-sujoy/Bengaluru-House-Price-Prediction",
     live: "https://sujoy0011-bengaluru-house-price-prediction.hf.space/",
     huggingface: "https://huggingface.co/spaces/sujoy0011/Bengaluru_House_Price_Prediction/tree/main",

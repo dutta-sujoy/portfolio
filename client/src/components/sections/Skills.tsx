@@ -12,7 +12,7 @@ const skillCategories = [
   },
   {
     category: "AI Concepts",
-    skills: ["Neural Networks", "LLMs", "Reinforcement Learning", "Deep Learning" , "Generative AI"]
+    skills: ["Neural Networks", "LLMs", "Reinforcement Learning", "Deep Learning" , "Generative AI", "AI Agents"]
   }
 ];
 
