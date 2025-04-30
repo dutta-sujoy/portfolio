@@ -16,8 +16,9 @@ const projects = [
     title: "AgroBrain",
     description: "Contributed to AgroBrain, an AI-powered solution for farmers, developing 2 core models: Crop Recommendation and Disease Detection.",
     image: "/project_Img/AgroBrain.gif",
-    github: "https://github.com/Agro-Brain/AgroBrain/tree/main/All%20Services",
+    github: "https://github.com/Agro-Brain/AgroBrain/tree/main/Services",
     huggingface: "https://huggingface.co/spaces/sujoy0011/crop-prediction/tree/main",
+    live: "https://agro-brain-27up.vercel.app/",
     techStack: ["Python", "Scikit-Learn", "CNN", "TensorFlow", "FastAPI", "Docker"]
   },
   {
