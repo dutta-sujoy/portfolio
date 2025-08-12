@@ -3,6 +3,18 @@ import TimelineItem from "@/components/TimelineItem";
 
 const experiences = [
   {
+    company: "Innotrat Labs",
+    role: "AI/ML Developer Intern",
+    duration: "May 2025 – Jun 2025",
+    logo: "img/ino.png",
+    description: [
+      "Built an AI agent chatbot using LangChain to assist with electronics hardware and project-related queries.",
+      "Integrated ChromaDB as a vector database for semantic search and context-aware retrieval.",
+      "Developed key modules such as YOLO + QR-based object detection, automated flowchart and code generation, and hardware component recommendation.",
+      "Fine-tuned a lightweight LLM on custom datasets for offline deployment on low-compute devices.",
+    ]
+  },
+  {
     company: "GeeksforGeeks KIIT",
     role: "AI ML",
     duration: "Feb 2025 - Present",
@@ -25,20 +37,10 @@ const experiences = [
     company: "AISoC",
     role: "Core Member",
     duration: "Feb 2023 - Feb 2025 (2 yrs)",
-    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQGybATFXWldWQ/company-logo_200_200/company-logo_200_200/0/1723126491097/a30648263_logo?e=1749081600&v=beta&t=A3TDFWEUVB25yzDRPaP83K6pX7Ix6xJLgImyl5Fz56s", // Replace with actual logo URL
+    logo: "img/aisoc.jpg", // Replace with actual logo URL
     description: [
       "Participated in 2 AI-based projects, research, and workshops to foster innovation and skill development among peers.",
       "Organized AI/ML workshops for students on AI technologies."
-    ]
-  },
-  {
-    company: "EduSkills Foundation",
-    role: "Data Analyst (Internship)",
-    duration: "Nov 2024 - Jan 2025 (3 mos)",
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSl8JXBUCR1kZoXlBlJmdVbw_gkIV1UfY0_ig&s", // Replace with actual logo URL
-    description: [
-      "Fundamental Data Analysis, Data Cleaning, and Data Visualization.",
-      "Analyzed large-scale datasets using Python, SQL, and Power BI."
     ]
   }
 ];

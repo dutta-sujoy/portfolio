@@ -18,7 +18,7 @@ export default forwardRef<HTMLElement>(function About(props, ref) {
       <Card className="bg-black/30 shadow-lg">
         <CardContent className="p-8 flex flex-col md:flex-row items-center gap-8">
           <Avatar className="w-48 h-48">
-            <AvatarImage src="https://media.licdn.com/dms/image/v2/D5603AQHJPsyBRN5urA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1726229822878?e=1746662400&v=beta&t=tGa0zdTYajCZ680MeRC_Fdy0_jP9n7QY12Qc7FR3Fmo" />
+            <AvatarImage src="/img/profile.png" />
             <AvatarFallback>Sujoy Dutta</AvatarFallback>
           </Avatar>
           

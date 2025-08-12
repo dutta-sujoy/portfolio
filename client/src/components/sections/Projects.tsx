@@ -22,6 +22,15 @@ const projects = [
     techStack: ["Python", "Scikit-Learn", "CNN", "TensorFlow", "FastAPI", "Docker"]
   },
   {
+    title: "NewsAI : Realtime news AI Agent",
+    description: "It’s a real-time, location-specific AI agent using LangChain and Gemini API to fetch and summarize local news.",
+    image: "/project_Img/newsAi.png",
+    github: "https://github.com/dutta-sujoy/NewsAI",
+    huggingface: "https://huggingface.co/spaces/sujoy0011/NewsAI-Backend",
+    live: "https://news-ai-ten.vercel.app/",
+    techStack: ["Python", "FastAPI", "LangChain", "ChromaDB", "Docker", ]
+  },
+  {
     title: "Movie Recommendation System",
     description: "AI-powered movie recommendation system using Content-Based Filtering, Streamlit, and TMDB API to suggest and display similar movies with posters.",
     image: "https://img.youtube.com/vi/i-B_I2DGIAI/maxresdefault.jpg",
