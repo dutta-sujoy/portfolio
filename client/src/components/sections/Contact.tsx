@@ -2,13 +2,19 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Send } from "lucide-react";
 import { SiHuggingface } from "react-icons/si";
 import { useToast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
+import { useRef } from "react";
+
+// EmailJS credentials
+const EMAILJS_SERVICE_ID = "service_kpuater";
+const EMAILJS_TEMPLATE_ID = "template_7f0f6gs";
+const EMAILJS_PUBLIC_KEY = "XbGQIXvdqJ3spCRov";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -18,28 +24,56 @@ const contactSchema = z.object({
 
 type ContactForm = z.infer<typeof contactSchema>;
 
+const socialLinks = [
+  {
+    icon: Github,
+    href: "https://github.com/dutta-sujoy",
+    label: "GitHub",
+    color: "hover:text-white hover:border-white/30 hover:shadow-white/10",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/dutta-sujoy/",
+    label: "LinkedIn",
+    color: "hover:text-blue-400 hover:border-blue-400/30 hover:shadow-blue-400/10",
+  },
+  {
+    icon: SiHuggingface,
+    href: "https://huggingface.co/sujoy0011",
+    label: "Hugging Face",
+    color: "hover:text-yellow-400 hover:border-yellow-400/30 hover:shadow-yellow-400/10",
+  },
+  {
+    icon: Mail,
+    href: "mailto:sujoydutta0011@gmail.com",
+    label: "Email",
+    color: "hover:text-cyan-400 hover:border-cyan-400/30 hover:shadow-cyan-400/10",
+  },
+];
+
 export default function Contact() {
   const { toast } = useToast();
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ContactForm>({
+  const formRef = useRef<HTMLFormElement>(null);
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
   });
 
-  const onSubmit = async (data: ContactForm) => {
+  const onSubmit = async (_data: ContactForm) => {
     try {
-      const response = await fetch("https://formsubmit.co/sujoydutta0011@gmail.com", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      if (!formRef.current) return;
+
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      toast({
+        title: "Message sent! ✨",
+        description: "I'll get back to you soon.",
       });
-  
-      if (response.ok) {
-        toast({
-          title: "Message sent!",
-          description: "I'll get back to you soon.",
-        });
-      } else {
-        throw new Error("Failed to send email.");
-      }
+      reset();
     } catch (error) {
       toast({
         variant: "destructive",
@@ -48,108 +82,114 @@ export default function Contact() {
       });
     }
   };
-  
 
   return (
     <section id="contact" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-4xl font-bold text-center mb-16"
+          className="section-heading"
         >
-          Contact Me
+          Get In Touch
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-5 gap-8">
+          {/* Contact form */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
+            className="md:col-span-3"
           >
-            <Card>
-              <CardContent className="p-6">
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                  <div>
-                    <Input
-                      placeholder="Your Name"
-                      {...register("name")}
-                    />
-                    {errors.name && (
-                      <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-                    )}
-                  </div>
+            <div className="glass-card rounded-2xl p-6 md:p-8">
+              <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                <div>
+                  <Input
+                    placeholder="Your Name"
+                    {...register("name")}
+                    className="bg-white/5 border-white/10 focus:border-cyan-400/50 transition-all duration-300 placeholder:text-muted-foreground/40 h-12"
+                  />
+                  {errors.name && (
+                    <p className="text-red-400 text-xs mt-1.5">{errors.name.message}</p>
+                  )}
+                </div>
 
-                  <div>
-                    <Input
-                      type="email"
-                      placeholder="Your Email"
-                      {...register("email")}
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-                    )}
-                  </div>
+                <div>
+                  <Input
+                    type="email"
+                    placeholder="Your Email"
+                    {...register("email")}
+                    className="bg-white/5 border-white/10 focus:border-cyan-400/50 transition-all duration-300 placeholder:text-muted-foreground/40 h-12"
+                  />
+                  {errors.email && (
+                    <p className="text-red-400 text-xs mt-1.5">{errors.email.message}</p>
+                  )}
+                </div>
 
-                  <div>
-                    <Textarea
-                      placeholder="Your Message"
-                      {...register("message")}
-                    />
-                    {errors.message && (
-                      <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
-                    )}
-                  </div>
+                <div>
+                  <Textarea
+                    placeholder="Your Message"
+                    {...register("message")}
+                    className="bg-white/5 border-white/10 focus:border-cyan-400/50 transition-all duration-300 placeholder:text-muted-foreground/40 min-h-[140px] resize-none"
+                  />
+                  {errors.message && (
+                    <p className="text-red-400 text-xs mt-1.5">{errors.message.message}</p>
+                  )}
+                </div>
 
-                  <Button type="submit" disabled={isSubmitting} className="w-full">
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full h-12 relative overflow-hidden group bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-400 hover:to-purple-400 border-0 font-semibold transition-all duration-300"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    {isSubmitting ? (
+                      "Sending..."
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="w-4 h-4" />
+                      </>
+                    )}
+                  </span>
+                </Button>
+              </form>
+            </div>
           </motion.div>
 
+          {/* Social links */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="flex flex-col justify-center items-center gap-8"
+            className="md:col-span-2 flex flex-col justify-center gap-4"
           >
-            <div className="flex gap-6">
-              <a
-                href="https://github.com/dutta-sujoy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Github className="h-8 w-8" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/dutta-sujoy/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Linkedin className="h-8 w-8" />
-              </a>
-              <a
-                href="mailto:sujoydutta0011@gmail.com"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Mail className="h-8 w-8" />
-              </a>
-              <a
-                href="https://huggingface.co/sujoy0011"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <SiHuggingface className="h-8 w-8" />
-              </a>
+            <p className="text-sm text-muted-foreground/60 mb-2 text-center md:text-left">
+              Connect with me
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-1 gap-3">
+              {socialLinks.map((link, i) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  target={link.href.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.02, x: 4 }}
+                  className={`flex items-center gap-3 p-4 rounded-xl border border-white/5 bg-white/[0.02] text-muted-foreground transition-all duration-300 hover:shadow-lg ${link.color}`}
+                >
+                  <link.icon className="w-5 h-5" />
+                  <span className="text-sm font-medium">{link.label}</span>
+                </motion.a>
+              ))}
             </div>
           </motion.div>
         </div>

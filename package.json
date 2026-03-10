@@ -1,6 +1,6 @@
 {
   "name": "rest-express",
-  "homepage": "https://sujoydutta.tech/",
+  "homepage": "https://dutta-sujoy.github.io/portfolio/",
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
@@ -13,6 +13,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.9.1",
     "@jridgewell/trace-mapping": "^0.3.25",
     "@neondatabase/serverless": "^0.10.4",

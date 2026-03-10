@@ -1,46 +1,39 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import { SiHuggingface } from "react-icons/si";
+import { motion } from "framer-motion";
 
+const footerLinks = [
+  { icon: Github, href: "https://github.com/dutta-sujoy", label: "GitHub" },
+  { icon: SiHuggingface, href: "https://huggingface.co/sujoy0011", label: "Hugging Face" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/dutta-sujoy/", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:sujoydutta0011@gmail.com", label: "Email" },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-background/80 backdrop-blur-lg border-t border-border py-8">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground">© {new Date().getFullYear()} Sujoy. All rights reserved.</p>
-          
-          <div className="flex gap-6">
-            <a
-              href="https://github.com/dutta-sujoy"
-              target="_blank"
+    <footer className="relative py-8 px-4">
+      {/* Gradient top border */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
+
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <p className="text-sm text-muted-foreground/50">
+          © {new Date().getFullYear()} <span className="gradient-text font-medium">Sujoy Dutta</span>. All rights reserved.
+        </p>
+
+        <div className="flex gap-4">
+          {footerLinks.map((link, i) => (
+            <motion.a
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith("mailto") ? undefined : "_blank"}
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
+              className="p-2 rounded-full text-muted-foreground/40 hover:text-foreground border border-transparent hover:border-white/10 hover:bg-white/5 transition-all duration-300"
+              whileHover={{ scale: 1.15, y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <Github className="h-5 w-5" />
-            </a>
-            <a
-              href="https://huggingface.co/sujoy0011"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <SiHuggingface className="h-5 w-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/dutta-sujoy/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a
-              href="mailto:sujoydutta0011@gmail.com"
-              className="text-muted-foreground hover:text-primary transition-colors"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
-          </div>
+              <link.icon className="h-4 w-4" />
+            </motion.a>
+          ))}
         </div>
       </div>
     </footer>
