@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import SectionHeading from "@/components/SectionHeading";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -86,15 +87,21 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 px-4">
       <div className="max-w-5xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <SectionHeading number="05" title="Get In Touch" />
+
+        {/* Status indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="section-heading"
+          className="flex items-center justify-center gap-2 -mt-8 mb-10"
         >
-          Get In Touch
-        </motion.h2>
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400" />
+          </span>
+          <span className="text-xs text-muted-foreground/50">Usually responds within 24 hours</span>
+        </motion.div>
 
         <div className="grid md:grid-cols-5 gap-8">
           {/* Contact form */}
@@ -111,7 +118,7 @@ export default function Contact() {
                   <Input
                     placeholder="Your Name"
                     {...register("name")}
-                    className="bg-white/5 border-white/10 focus:border-cyan-400/50 transition-all duration-300 placeholder:text-muted-foreground/40 h-12"
+                    className="bg-white/5 border-white/10 focus:border-cyan-400/50 focus:shadow-[0_0_15px_rgba(0,212,255,0.1)] transition-all duration-300 placeholder:text-muted-foreground/40 h-12"
                   />
                   {errors.name && (
                     <p className="text-red-400 text-xs mt-1.5">{errors.name.message}</p>

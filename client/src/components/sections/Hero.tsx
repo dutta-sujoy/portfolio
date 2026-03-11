@@ -79,7 +79,7 @@ export default function Hero() {
       <div className="text-center relative z-10">
         {/* Staggered letter animation */}
         <motion.h1
-          className="text-5xl sm:text-6xl md:text-8xl font-black mb-6"
+          className="text-[2.5rem] sm:text-6xl md:text-8xl font-black mb-6 leading-tight"
           initial="hidden"
           animate="visible"
         >
@@ -132,11 +132,36 @@ export default function Hero() {
           Passionate about innovation and problem-solving.
         </motion.p>
 
+        {/* Stats counters */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+          className="mt-10 flex items-center justify-center gap-8 md:gap-12"
+        >
+          {[
+            { value: "5+", label: "Projects" },
+            { value: "10+", label: "Technologies" },
+            { value: "16+", label: "Skills" },
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 1.3 + i * 0.15 }}
+              className="text-center"
+            >
+              <span className="block text-2xl md:text-3xl font-bold gradient-text">{stat.value}</span>
+              <span className="text-xs md:text-sm text-muted-foreground/50 font-medium tracking-wider uppercase">{stat.label}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+
         {/* CTA Button */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
           className="mt-10"
         >
           <a

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import SectionHeading from "@/components/SectionHeading";
 import { useRef, useState, useEffect, useCallback } from "react";
 import {
   SiPython, SiTensorflow, SiPytorch,
@@ -269,15 +270,7 @@ export default function Skills() {
   return (
     <section id="skills" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="section-heading"
-        >
-          Skills
-        </motion.h2>
+        <SectionHeading number="04" title="Skills" />
 
         <p className="text-center text-xs text-muted-foreground/35 mb-4 -mt-8">
           Hover to see · Hold & drag to control

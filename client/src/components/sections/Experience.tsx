@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import TimelineItem from "@/components/TimelineItem";
+import SectionHeading from "@/components/SectionHeading";
 
 const base = import.meta.env.BASE_URL;
 
@@ -51,15 +52,7 @@ export default function Experience() {
   return (
     <section id="experience" className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="section-heading"
-        >
-          Experience
-        </motion.h2>
+        <SectionHeading number="02" title="Experience" />
 
         <div className="relative">
           {experiences.map((exp, index) => (

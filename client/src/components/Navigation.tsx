@@ -40,7 +40,7 @@ export default function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
         scrolled
           ? "bg-background/60 backdrop-blur-2xl border-b border-white/5 shadow-lg shadow-black/10"
           : "bg-transparent"
@@ -87,11 +87,13 @@ export default function Navigation() {
 
         {/* Mobile Menu Button */}
         <motion.button
-          className="block md:hidden text-muted-foreground p-2 rounded-lg hover:bg-white/5 transition-colors"
+          className="block md:hidden text-muted-foreground p-2.5 rounded-lg hover:bg-white/5 transition-colors relative z-[60]"
           onClick={() => setIsOpen(!isOpen)}
           whileTap={{ scale: 0.9 }}
+          aria-label="Toggle menu"
+          style={{ touchAction: 'manipulation', minWidth: 44, minHeight: 44 }}
         >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </motion.button>
       </div>
 
@@ -103,7 +105,7 @@ export default function Navigation() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-background/90 backdrop-blur-2xl border-t border-white/5 overflow-hidden"
+            className="md:hidden bg-background/95 backdrop-blur-2xl border-t border-white/5 overflow-hidden relative z-[55]"
           >
             <ul className="flex flex-col p-4 gap-1">
               {navItems.map((item, i) => (
@@ -120,7 +122,17 @@ export default function Navigation() {
                         ? "bg-white/10 text-foreground"
                         : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
                     }`}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsOpen(false);
+                      // Small delay to let menu close, then scroll
+                      setTimeout(() => {
+                        const el = document.getElementById(item.toLowerCase());
+                        if (el) {
+                          el.scrollIntoView({ behavior: "smooth", block: "start" });
+                        }
+                      }, 300);
+                    }}
                   >
                     {item}
                   </a>

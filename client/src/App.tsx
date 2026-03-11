@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import ScrollToTop from "@/components/ScrollToTop";
+import CustomCursor from "@/components/CustomCursor";
 
 const basePath = "/portfolio";
 
@@ -22,6 +23,7 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
+      <CustomCursor />
       <Router />
       <ScrollToTop />
       <Toaster />

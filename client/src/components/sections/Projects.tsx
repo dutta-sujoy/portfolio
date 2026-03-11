@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import ProjectCard from "@/components/ProjectCard";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
+import SectionHeading from "@/components/SectionHeading";
 
 const base = import.meta.env.BASE_URL;
 
@@ -100,15 +101,7 @@ export default function Projects() {
       viewport={{ once: true }}
     >
       <div className="max-w-6xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="section-heading"
-        >
-          Projects
-        </motion.h2>
+        <SectionHeading number="03" title="Projects" />
 
         {/* Tech filter */}
         <motion.div
@@ -134,7 +127,7 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((project, index) => (
-            <ProjectCard key={index} {...project} />
+            <ProjectCard key={index} {...project} index={index} featured={index < 2} />
           ))}
         </div>
       </div>
